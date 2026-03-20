@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Screen Hand Drawing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Air Drawing Notebook</title>
     <link rel="stylesheet" href="style.css">
     
     <!-- MediaPipe Libraries -->
@@ -15,8 +15,8 @@
 <body>
 
     <div class="instructions">
-        <p>Hold down <b>SHIFT</b> to draw with your index finger.</p>
-        <p>Press <b>SPACE</b> to clear the canvas.</p>
+        <p><b>Desktop:</b> Hold <b>SHIFT</b> to draw. Press <b>SPACE</b> to clear.</p>
+        <p><b>Mobile:</b> Use the buttons below!</p>
         <p id="status">Loading camera...</p>
     </div>
 
@@ -24,6 +24,13 @@
         <video class="input_video" autoplay playsinline></video>
         <canvas class="output_canvas"></canvas>
         <canvas class="draw_canvas"></canvas>
+    </div>
+
+    <!-- Touch Buttons for Mobile & Desktop -->
+    <div class="mobile-controls">
+        <button id="drawToggleBtn" class="btn">Draw: OFF</button>
+        <button id="clearBtn" class="btn">Clear</button>
+        <button id="saveBtn" class="btn save-btn">Save 📸</button>
     </div>
 
     <script src="script.js"></script>

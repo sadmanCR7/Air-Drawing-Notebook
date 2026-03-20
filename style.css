@@ -1,18 +1,19 @@
-/* Reset margins so there is no white border around the screen */
+/* Reset margins and prevent mobile pull-to-refresh / zooming */
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Prevents scrollbars from appearing */
+    overflow: hidden; 
     background-color: black;
+    touch-action: none; 
 }
 
 .instructions {
     position: absolute;
     top: 20px;
     left: 20px;
-    z-index: 100; /* Keeps text above the video */
+    z-index: 100;
     background: rgba(255, 255, 255, 0.8);
     padding: 10px 20px;
     border-radius: 8px;
@@ -21,6 +22,7 @@ body, html {
 
 .instructions p {
     margin: 5px 0;
+    font-size: 14px;
 }
 
 .container {
@@ -32,16 +34,63 @@ body, html {
 }
 
 .input_video {
-    display: none; /* Hide raw video, we draw it on the output canvas */
+    display: none; 
 }
 
-/* Make both canvases fill the screen completely */
 .output_canvas, .draw_canvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    object-fit: cover; /* This makes the video fill the screen without stretching */
-    transform: scaleX(-1); /* Mirrors the screen naturally */
+    object-fit: cover; 
+    transform: scaleX(-1); 
+}
+
+/* NEW: Mobile Touch Button Styles */
+.mobile-controls {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 100;
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border-radius: 30px;
+    border: 2px solid #FFE87C;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFE87C;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.2s;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* When the draw button is toggled ON */
+.btn.active-btn {
+    background: #FFE87C;
+    color: black;
+    box-shadow: 0 0 15px #FFE87C;
+}
+/* Custom style for the Save button */
+.save-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-color: #fff;
+}
+
+.save-btn:active, .save-btn:hover {
+    background: #fff;
+    color: black;
+    box-shadow: 0 0 15px #fff;
 }
